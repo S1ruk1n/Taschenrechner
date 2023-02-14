@@ -1,33 +1,44 @@
 <h1 align="center"> Taschenrechner </h1>
+<div class="bgColor">
 
+<div class="Display">
 <div class="maindisplay">
     <div class="subdisplay">{{ subText }}</div>
     {{ mainText }}
 </div>
+</div>
+
+<div class="Tastatur">
 <div class="keypad">
-    <div class=" keys one-line"></div>
-    <div color="red" class="keys one-line" (click)="allClear('AC')">AC</div> 
-    <div class="keys opkey one-line" (click)="pressKey('/')">/</div>
-<div></div>
-    <div class="keys  one-line" (click)="pressKey('7')">7</div>  
-    <div class="keys  one-line" (click)="pressKey('8')">8</div>
-    <div class="keys  one-line" (click)="pressKey('9')">9</div>
-    <div class="keys opkey one-line" (click)="pressKey('x')">x</div>
+    
+
+
+    <button class="keys operationkey one-line" (click)="pressKey('%')">%</button>
+    <button class="keys deletekey one-line" (click)="allClear('AC')">AC</button> 
+    <button class="keys operationkey one-line" (click)="pressKey('/')">/</button>
+    <button class=" keys operationkey one-line"(click)="delete('!')">⌫</button>
+    <button class="keys  one-line" (click)="pressKey('7')">7</button>  
+    <button class="keys  one-line" (click)="pressKey('8')">8</button>
+    <button class="keys  one-line" (click)="pressKey('9')">9</button>
+    <button class="keys operationkey one-line" (click)="pressKey('x')">x</button>
  
 
-    <div class="keys one-line" (click)="pressKey('4')">4</div>  
-    <div class="keys one-line" (click)="pressKey('5')">5</div>  
-    <div class="keys one-line" (click)="pressKey('6')">6</div>
-    <div class="keys opkey one-line" (click)="pressKey('-')">-</div>  
+    <button class="keys one-line" (click)="pressKey('4')">4</button>  
+    <button class="keys one-line" (click)="pressKey('5')">5</button>  
+    <button class="keys one-line" (click)="pressKey('6')">6</button>
+    <button class="keys operationkey one-line" (click)="pressKey('-')">-</button>  
 
-    <div class="keys one-line" (click)="pressKey('1')">1</div>
-    <div class="keys one-line" (click)="pressKey('2')">2</div>
-    <div class="keys one-line" (click)="pressKey('3')">3</div> 
-    <div class="keys opkey one-line" (click)="pressKey('+')">+</div>
- 
-    <div></div>  
-    <div class="keys zerokey one-line" (click)="pressKey('0')">0</div>
-    <div class="keys one-line" (click)="pressKey('.')">.</div>  
-    <div class="keys one-line" (click)="getAnswer()">=</div> 
+    <button class="keys one-line" (click)="pressKey('1')">1</button>
+    <button class="keys one-line" (click)="pressKey('2')">2</button>
+    <button class="keys one-line" (click)="pressKey('3')">3</button> 
+    <button class="keys operationkey one-line" (click)="pressKey('+')">+</button>
+    <button class="keys operationkey one-line" (click)="negPosKey('+/-')">+/-</button>
+
+    <button class="keys zerokey one-line" (click)="pressKey('0')">0</button>
+    <button class="keys operationkey one-line" (click)="pressKey('.')">.</button>  
+    <button class="keys anskey one-line" (click)="getAnswer()">=</button> 
+
  </div>
+</div>
+</div>
 <router-outlet></router-outlet>

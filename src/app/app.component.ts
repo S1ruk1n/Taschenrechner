@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 
 @Component({
@@ -22,9 +22,9 @@ export class AppComponent {
 
   
   pressKey(key: string) {
-    if (key === '/' || key === 'x' || key === '-' || key === '+') {
+    if (key === '/' || key === 'x' || key === '-' || key === '+' || key === '%') {
        const lastKey = this.mainText[this.mainText.length - 1];
-       if (lastKey === '/' || lastKey === 'x' || lastKey === '-' || lastKey === '+')  {
+       if (lastKey === '/' || lastKey === 'x' || lastKey === '-' || lastKey === '+' || lastKey === '%')  {
          this.operatorSet = true;
        }
        if ((this.operatorSet) || (this.mainText === '')) {
@@ -72,6 +72,14 @@ export class AppComponent {
       this.mainText = 'ERROR';
       this.subText = 'Error zu viele zahlen';
     }
+  } else if (this.operator === '%') {
+    this.subText = this.mainText;
+    this.mainText = (this.firstOperator1 * (this.secondOperator2 /100)).toString();
+    this.subText = this.taschenrechnerAusgabe;
+    if (this.mainText.length > 9) {
+      this.mainText = 'ERROR';
+      this.subText = 'Error zu viele zahlen';
+    }
   } else {
     this.subText = 'ERROR: Ungültige eingabe';
   }
@@ -81,10 +89,28 @@ export class AppComponent {
 // Ausgabe zum Löschen 
 allClear(key: string) {
  if (key === 'AC') {
-  this.mainText = " ";
-  this.subText = " ";
+  this.mainText = "";
+  this.subText = "";
+  this.taschenrechnerAusgabe = "";
   return;
  }
 }
+
+// löschen eine Eingabe
+delete(key: string) {
+  if(key === '!') {
+    this.mainText = this.mainText.slice(0, -1);
+    return;
+  }
 }
 
+// Plus Miuns
+negPosKey(key: string) {
+  if(key === '+/-') {
+    if (this.mainText > '0') {
+      this.mainText = "-" + this.mainText;
+      return;
+    }
+  }
+  }
+}

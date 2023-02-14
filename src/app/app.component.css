@@ -1,15 +1,18 @@
+.bgColor {
+    background-color: rgb(111, 0, 0);
+}
 .maindisplay {
-    background: lightgrey;
-    height: calc(100% / 3);
-    padding: 5%;
+    background: rgb(207, 252, 206);
+    height: 200px;
+    padding: 10%;
     font-size: 4rem;
     text-align: right;
     font-family: Courier, monospace;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 .subdisplay {
     border-bottom: 1px solid black;
-    height: 25%;
+    min-height: 5vh;
     font-size: 2rem;
     overflow: auto;
 }
@@ -20,8 +23,8 @@
     margin: 0;
     width: 25%;
     height: 20%;
-    background: whitesmoke;
-    color: black;
+    background: rgb(49, 49, 49);
+    color: rgb(250, 90, 4);
     padding: 5%;
     font-size: 2rem;
     text-align: center;
@@ -29,4 +32,29 @@
 }
 .one-line {
     display: inline-block;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.operationkey {
+    background-color: black;
+    color: white;
+}
+
+.deletekey {
+    background-color: red;
+    color: black;
+}
+
+.anskey {
+    background-color: red;
+    color: white;
+}
+
+
+.Display {
+    border: 12px solid black;
+}
+
+.Tastatur {
+    border: 2px solid black;
 }
