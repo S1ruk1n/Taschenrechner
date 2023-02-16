@@ -1,4 +1,4 @@
-<h1 align="center"> Taschenrechner </h1>
+
 <div class="bgColor">
 
 <div class="Display">
@@ -12,6 +12,10 @@
 <div class="keypad">
     
 
+    <button class="keys operationkey one-line">mode</button>
+    <button class="keys operationkey one-line" (click)="pressKey('x²')">x²</button>
+    <button class="keys operationkey one-line">pi</button>
+    <button class="keys operationkey one-line">copy</button>
 
     <button class="keys operationkey one-line" (click)="pressKey('%')">%</button>
     <button class="keys deletekey one-line" (click)="allClear('AC')">AC</button> 
@@ -41,4 +45,10 @@
  </div>
 </div>
 </div>
+
+
+<!--div text-align=center>
+	<input (input)="onInputChange($event)" class="input" value={{value}} placeholder="Tap on the virtual keyboard to start" />
+	<div class="simple-keyboard"></div>
+</div-->
 <router-outlet></router-outlet>

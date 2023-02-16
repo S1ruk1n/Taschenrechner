@@ -1,12 +1,20 @@
-import { Component, HostListener } from '@angular/core';
-
+import { Component, ViewEncapsulation } from '@angular/core';
+import { retry } from 'rxjs';
+import Keyboard from "simple-keyboard";
 
 @Component({
   selector: 'app-root',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  //Tastatur
+  value = "";
+  keyboard!: Keyboard;
+
+  // Taschenrechner
   title = 'Taschenrechner';
   subText = ''; 
   mainText = ''; 
@@ -18,13 +26,15 @@ export class AppComponent {
 
   operatorSet = false; 
 
+
+
   // Funktion für das Klicken der Buttons
 
   
   pressKey(key: string) {
-    if (key === '/' || key === 'x' || key === '-' || key === '+' || key === '%') {
+    if (key === '/' || key === 'x' || key === '-' || key === '+' || key === '%' || key === 'AC' || key === 'x²') {
        const lastKey = this.mainText[this.mainText.length - 1];
-       if (lastKey === '/' || lastKey === 'x' || lastKey === '-' || lastKey === '+' || lastKey === '%')  {
+       if (lastKey === '/' || lastKey === 'x' || lastKey === '-' || lastKey === '+' || lastKey === '%' || lastKey === 'AC' || lastKey === 'x²')  {
          this.operatorSet = true;
        }
        if ((this.operatorSet) || (this.mainText === '')) {
@@ -80,20 +90,27 @@ export class AppComponent {
       this.mainText = 'ERROR';
       this.subText = 'Error zu viele zahlen';
     }
+  }else if (this.operator === 'x²') {
+    this.subText = this.mainText;
+    this.mainText = (this.firstOperator1 * this.firstOperator1).toString();
+    this.subText = this.taschenrechnerAusgabe;
+    if (this.mainText.length > 9) {
+      this.mainText = 'ERROR';
+      this.subText = 'Error zu viele Zahlen';
+  }
   } else {
     this.subText = 'ERROR: Ungültige eingabe';
   }
   this.Antwort = true;
 }
 
-// Ausgabe zum Löschen 
+//Ausgabe zum Löschen // Ausgabe objekt umschreiben
 allClear(key: string) {
- if (key === 'AC') {
-  this.mainText = "";
-  this.subText = "";
-  this.taschenrechnerAusgabe = "";
+if(key === 'AC'){
+  this.mainText = ''
+  this.subText = ''
   return;
- }
+}
 }
 
 // löschen eine Eingabe

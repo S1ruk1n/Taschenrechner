@@ -2,5 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html, body { height: 100%; }
+@import 'simple-keyboard/build/css/index.css';
+
+html, body { height: 50%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
