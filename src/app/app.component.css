@@ -1,15 +1,14 @@
 .bgColor {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(93, 91, 91);
 }
 
 .maindisplay {
-    background: rgb(207, 252, 206);
+    background: rgb(92, 243, 54);
     height: 200px;
     padding: 10%;
     font-size: 4rem;
     text-align: right;
     font-family: Courier, monospace;
-    /*overflow: auto;*/
 }
 
 .subdisplay {
@@ -20,7 +19,9 @@
 }
 
 .keypad {
-    height: calc(200% / 3);
+    height: calc(100% / 3);
+    border: 2px solid rgb(1, 0, 0);
+    border-radius: 0px 0px 14px 14px;
 }
 
 .keys {
@@ -37,7 +38,9 @@
 
 .one-line {
     display: inline-block;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgba(254, 253, 253, 0.228);
+    border-radius: 0px 0px 12px 12px;
+
 }
 
 .operationkey {
@@ -61,7 +64,3 @@
     border-radius: 15px 15px 0px 0px;
 }
 
-.Tastatur {
-    border: 2px solid black;
-    border-radius: 0px 0px 0px 0px;
-}

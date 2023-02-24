@@ -1,4 +1,3 @@
-
 <div class="bgColor">
 
 <div class="Display">
@@ -12,43 +11,37 @@
 <div class="keypad">
     
 
-    <button class="keys operationkey one-line">mode</button>
+    <button class="keys operationkey one-line">mode</button> <!-- Modus Button für weitere funktionen noch nicht Codiert-->
     <button class="keys operationkey one-line" (click)="pressKey('x²')">x²</button>
-    <button class="keys operationkey one-line">pi</button>
-    <button class="keys operationkey one-line">copy</button>
+    <button class="keys operationkey one-line" (click)="pressKey('π')">π</button>
+    <button class="keys operationkey one-line">copy</button> <!-- Copy Button um ausgabe zu kopieren noch nicht codiert-->
 
-    <button class="keys operationkey one-line" (click)="pressKey('%')">%</button>
-    <button class="keys deletekey one-line" (click)="allClear('AC')">AC</button> 
-    <button class="keys operationkey one-line" (click)="pressKey('/')">/</button>
-    <button class=" keys operationkey one-line"(click)="delete('!')">⌫</button>
+    <button class="keys operationkey one-line" (click)="pressKey('%')">%</button><!-- Prozent Funktion -->
+    <button class="keys deletekey one-line " (click)="clearAusgabe('AC')">AC</button> <!-- Löschen der Funktione "Dieser Button enthält noch ein Bug"-->
+    <button class="keys operationkey one-line" (click)="pressKey('/')">/</button><!-- Divisons Funktion -->
+    <button class=" keys operationkey one-line"(click)="delete('!')">⌫</button><!-- Löschen der letzen Zahl-->
     <button class="keys  one-line" (click)="pressKey('7')">7</button>  
     <button class="keys  one-line" (click)="pressKey('8')">8</button>
     <button class="keys  one-line" (click)="pressKey('9')">9</button>
-    <button class="keys operationkey one-line" (click)="pressKey('x')">x</button>
+    <button class="keys operationkey one-line" (click)="pressKey('x')">x</button><!-- Mulitplikations Funktion-->
  
 
     <button class="keys one-line" (click)="pressKey('4')">4</button>  
     <button class="keys one-line" (click)="pressKey('5')">5</button>  
     <button class="keys one-line" (click)="pressKey('6')">6</button>
-    <button class="keys operationkey one-line" (click)="pressKey('-')">-</button>  
+    <button class="keys operationkey one-line" (click)="pressKey('-')">-</button>  <!-- Subtraktions Funktion-->
 
     <button class="keys one-line" (click)="pressKey('1')">1</button>
     <button class="keys one-line" (click)="pressKey('2')">2</button>
     <button class="keys one-line" (click)="pressKey('3')">3</button> 
-    <button class="keys operationkey one-line" (click)="pressKey('+')">+</button>
-    <button class="keys operationkey one-line" (click)="negPosKey('+/-')">+/-</button>
+    <button class="keys operationkey one-line" (click)="pressKey('+')">+</button><!-- Addition Funktion-->
+    <button class="keys operationkey one-line" (click)="negPosKey('+/-')">+/-</button><!-- funktion für negative Zahlen-->
 
     <button class="keys zerokey one-line" (click)="pressKey('0')">0</button>
-    <button class="keys operationkey one-line" (click)="pressKey('.')">.</button>  
-    <button class="keys anskey one-line" (click)="getAnswer()">=</button> 
+    <button class="keys operationkey one-line" (click)="pressKey('.')">.</button>  <!-- '.' für zahlen unter 1-->
+    <button class="keys anskey one-line" (click)="getAnswer()">=</button> <!-- Ausgabe der Ergebnisse-->
 
  </div>
 </div>
 </div>
-
-
-<!--div text-align=center>
-	<input (input)="onInputChange($event)" class="input" value={{value}} placeholder="Tap on the virtual keyboard to start" />
-	<div class="simple-keyboard"></div>
-</div-->
 <router-outlet></router-outlet>

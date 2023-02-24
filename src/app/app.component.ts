@@ -1,14 +1,19 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { retry } from 'rxjs';
+import { Component, OnInit} from '@angular/core';
+import { Observable, Subject, debounceTime, distinctUntilChanged, retry, toArray } from 'rxjs';
 import Keyboard from "simple-keyboard";
+
+
+
 
 @Component({
   selector: 'app-root',
-  encapsulation: ViewEncapsulation.None,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+
+
 
   //Tastatur
   value = "";
@@ -23,28 +28,29 @@ export class AppComponent {
   operator = ''; 
   taschenrechnerAusgabe = ''; 
   Antwort = false; 
+  NeueAusgabe1 = "";
+  NeueAusgabe2 = "";
+
 
   operatorSet = false; 
 
 
-
   // Funktion für das Klicken der Buttons
-
-  
   pressKey(key: string) {
-    if (key === '/' || key === 'x' || key === '-' || key === '+' || key === '%' || key === 'AC' || key === 'x²') {
+    if (key === '/' || key === 'x' || key === '-' || key === '+' || key === '%' || key === 'AC' || key === 'x²'|| key === 'π') {
        const lastKey = this.mainText[this.mainText.length - 1];
-       if (lastKey === '/' || lastKey === 'x' || lastKey === '-' || lastKey === '+' || lastKey === '%' || lastKey === 'AC' || lastKey === 'x²')  {
+       if (lastKey === '/' || lastKey === 'x' || lastKey === '-' || lastKey === '+' || lastKey === '%' || lastKey === 'AC' || lastKey === 'x²' || lastKey === 'π')  {
          this.operatorSet = true;
        }
        if ((this.operatorSet) || (this.mainText === '')) {
+        const clearAusgbabe = this.mainText[this.mainText.length - this.mainText.length]
          return;
        }
        this.firstOperator1 = parseFloat(this.mainText);
        this.operator = key;
        this.operatorSet = true;
     }
-    if (this.mainText.length === 10) {
+    if (this.mainText.length === 9) {
       return;
     }
     this.mainText += key;
@@ -59,14 +65,14 @@ export class AppComponent {
     this.subText = this.mainText;
     this.mainText = (this.firstOperator1 / this.secondOperator2).toString();
     this.subText = this.taschenrechnerAusgabe;
-    if (this.mainText.length > 9) {
+    if (this.mainText.length > 15) {
       this.mainText = this.mainText.substring(0, 9);
     }
   } else if (this.operator === 'x') {
     this.subText = this.mainText;
     this.mainText = (this.firstOperator1 * this.secondOperator2).toString();
     this.subText = this.taschenrechnerAusgabe;
-    if (this.mainText.length > 9) {
+    if (this.mainText.length > 15) {
       this.mainText = 'ERROR';
       this.subText = 'Error zu viele zahlen';
     }
@@ -78,7 +84,7 @@ export class AppComponent {
     this.subText = this.mainText;
     this.mainText = (this.firstOperator1 + this.secondOperator2).toString();
     this.subText = this.taschenrechnerAusgabe;
-    if (this.mainText.length > 9) {
+    if (this.mainText.length > 15) {
       this.mainText = 'ERROR';
       this.subText = 'Error zu viele zahlen';
     }
@@ -86,7 +92,7 @@ export class AppComponent {
     this.subText = this.mainText;
     this.mainText = (this.firstOperator1 * (this.secondOperator2 /100)).toString();
     this.subText = this.taschenrechnerAusgabe;
-    if (this.mainText.length > 9) {
+    if (this.mainText.length > 15) {
       this.mainText = 'ERROR';
       this.subText = 'Error zu viele zahlen';
     }
@@ -94,28 +100,33 @@ export class AppComponent {
     this.subText = this.mainText;
     this.mainText = (this.firstOperator1 * this.firstOperator1).toString();
     this.subText = this.taschenrechnerAusgabe;
-    if (this.mainText.length > 9) {
+    if (this.mainText.length > 15) {
       this.mainText = 'ERROR';
       this.subText = 'Error zu viele Zahlen';
   }
+}else if (this.operator === 'π') {
+  this.subText = this.mainText;
+  this.mainText = ((this.firstOperator1 *  3.1415926536)  * this.secondOperator2 ).toString();
+  this.subText = this.taschenrechnerAusgabe;
+}else {
+  this.mainText = (this.firstOperator1 * 3.1415926536 ).toString();
+  this.subText= this.taschenrechnerAusgabe;
+}
+
+  if (this.mainText.length > 30) {
+    this.mainText = 'ERROR';
+    this.subText = 'Error zu viele Zahlen';
   } else {
-    this.subText = 'ERROR: Ungültige eingabe';
+    this.subText = '';
   }
   this.Antwort = true;
 }
 
-//Ausgabe zum Löschen // Ausgabe objekt umschreiben
-allClear(key: string) {
-if(key === 'AC'){
-  this.mainText = ''
-  this.subText = ''
-  return;
-}
-}
+
 
 // löschen eine Eingabe
 delete(key: string) {
-  if(key === '!') {
+  if(key === '!'){
     this.mainText = this.mainText.slice(0, -1);
     return;
   }
@@ -130,4 +141,12 @@ negPosKey(key: string) {
     }
   }
   }
+
+  // löschen
+ clearAusgabe(key: string) {
+  if(key === 'AC') {
+this.mainText = ""
+this.subText = ""
+}
+ }
 }
