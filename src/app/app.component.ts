@@ -43,7 +43,6 @@ export class AppComponent {
          this.operatorSet = true;
        }
        if ((this.operatorSet) || (this.mainText === '')) {
-        const clearAusgbabe = this.mainText[this.mainText.length - this.mainText.length]
          return;
        }
        this.firstOperator1 = parseFloat(this.mainText);
@@ -106,13 +105,8 @@ export class AppComponent {
   }
 }else if (this.operator === 'π') {
   this.subText = this.mainText;
-  this.mainText = ((this.firstOperator1 *  3.1415926536)  * this.secondOperator2 ).toString();
+  this.mainText = (this.firstOperator1 *  3.1415926536).toString();
   this.subText = this.taschenrechnerAusgabe;
-}else {
-  this.mainText = (this.firstOperator1 * 3.1415926536 ).toString();
-  this.subText= this.taschenrechnerAusgabe;
-}
-
   if (this.mainText.length > 30) {
     this.mainText = 'ERROR';
     this.subText = 'Error zu viele Zahlen';
@@ -120,6 +114,7 @@ export class AppComponent {
     this.subText = '';
   }
   this.Antwort = true;
+}
 }
 
 
@@ -147,6 +142,7 @@ negPosKey(key: string) {
   if(key === 'AC') {
 this.mainText = ""
 this.subText = ""
+return 
 }
  }
 }
